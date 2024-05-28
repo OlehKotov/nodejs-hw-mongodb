@@ -1,4 +1,10 @@
-import { createContactController, deleteStudentController, getContactByIdController, getContactsController, patchContactController } from '../controllers/contacts.js';
+import {
+  createContactController,
+  deleteStudentController,
+  getContactByIdController,
+  getContactsController,
+  patchContactController,
+} from '../controllers/contacts.js';
 import { Router } from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
