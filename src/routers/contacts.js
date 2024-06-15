@@ -15,23 +15,15 @@ import {
 import { validateMongoId } from '../middlewares/validateMongoId.js';
 import { authenticate } from '../middlewares/authenticate.js';
 
-
 const contactsRouter = Router();
-
 
 contactsRouter.use('/:contactId', validateMongoId('contactId'));
 
 contactsRouter.use(authenticate);
 
-contactsRouter.get(
-  '/',
-  ctrlWrapper(getContactsController),
-);
+contactsRouter.get('/', ctrlWrapper(getContactsController));
 
-contactsRouter.get(
-  '/:contactId',
-  ctrlWrapper(getContactByIdController),
-);
+contactsRouter.get('/:contactId', ctrlWrapper(getContactByIdController));
 
 contactsRouter.post(
   '/',
@@ -39,10 +31,7 @@ contactsRouter.post(
   ctrlWrapper(createContactController),
 );
 
-contactsRouter.delete(
-  '/:contactId',
-  ctrlWrapper(deleteStudentController),
-);
+contactsRouter.delete('/:contactId', ctrlWrapper(deleteStudentController));
 
 contactsRouter.patch(
   '/:contactId',
