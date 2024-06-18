@@ -110,7 +110,7 @@ export const requestResetToken = async (email) => {
       sub: user._id,
       email,
     },
-    env('JWT_SECRET'),
+    env(SMTP.JWT_SECRET),
     {
       expiresIn: '15m',
     },
@@ -128,13 +128,18 @@ export const requestResetToken = async (email) => {
   const template = handlebars.compile(templateSource);
   const html = template({
     name: user.name,
-    link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
+    link: `${env(SMTP.APP_DOMAIN)}/reset-password?token=${resetToken}`,
   });
-
+try {
   await sendEmail({
     from: env(SMTP.SMTP_FROM),
     to: email,
     subject: 'Reset your password',
     html,
   });
+} catch (error) {
+  console.log(error);
+  throw createHttpError(500, 'Problem with sending emails');
+}
+
 };
