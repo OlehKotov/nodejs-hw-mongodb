@@ -139,7 +139,7 @@ try {
   });
 } catch (error) {
   console.log(error);
-  throw createHttpError(500, 'Problem with sending emails');
+  throw createHttpError(500, 'Failed to send the email, please try again later.');
 }
 };
 
